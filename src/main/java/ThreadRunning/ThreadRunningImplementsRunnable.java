@@ -1,6 +1,6 @@
 package ThreadRunning;
 
-public class ThreadRunning {
+public class ThreadRunningImplementsRunnable {
     public static void main(String[] args) {
         Thread t1 = new Thread(new Runner1());
         Thread t2 = new Thread(new Runner2());
