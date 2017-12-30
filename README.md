@@ -30,7 +30,7 @@
 
 # Basic Concept implements Runnable
 
-        public class ThreadRunning {
+        public class ImplementsRunnable {
             public static void main(String[] args) {
                 Thread t1 = new Thread(new Runner1());
                 Thread t2 = new Thread(new Runner2());
@@ -54,6 +54,36 @@
             public void run() {
                 for (int i = 0; i < 50; i++) {
                     System.out.println("runner 2" + " running " + i);
+                }
+            }
+        }
+
+## Extends Thread
+
+        public class ThreadRunningExtendsThread {
+            public static void main(String[] args) {
+                Thread t1 = new Runner3();
+                t1.start();
+        
+                Thread t2 = new Runner4();
+                t2.start();
+            }
+        }
+        
+        class Runner3 extends Thread {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    System.out.println("runner3 " + i);
+                }
+            }
+        }
+        
+        class Runner4 extends Thread {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    System.out.println("runner4 " + i);
                 }
             }
         }
