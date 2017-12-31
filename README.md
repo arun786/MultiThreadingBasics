@@ -130,3 +130,89 @@ then the main thread or the other thread ends
                 }
             }
         }
+
+## Synchronized
+
+For the below example, the value of the counter should be 2000,
+but the results are not always consistent, so to get a consistent 
+result we need to use synchronized key word.
+
+First example is without synchronized, this will gives results such as 
+2000, 1534 etc.
+
+    public class SynchronizedExplained {
+    
+        private static int counter = 0;
+    
+        public static void main(String[] args) {
+            Thread t1 = new Thread(new Runnable() {
+                public void run() {
+                    for (int i = 0; i < 1000; i++)
+                        ++counter;
+                }
+            });
+    
+    
+            Thread t2 = new Thread(new Runnable() {
+                public void run() {
+                    for (int i = 0; i < 1000; i++)
+                        ++counter;
+                }
+            });
+    
+    
+            t1.start();
+            t2.start();
+    
+            try {
+                t1.join();
+                t2.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    
+            System.out.println("Value of Counter is " + counter);
+        }
+    }
+    
+  The same example with synchronized keyword.
+  
+    public class SynchronizedExplained {
+  
+      private static int counter = 0;
+  
+      public static void main(String[] args) {
+          Thread t1 = new Thread(new Runnable() {
+              public void run() {
+                  for (int i = 0; i < 1000; i++)
+                      increment();
+              }
+          });
+  
+  
+          Thread t2 = new Thread(new Runnable() {
+              public void run() {
+                  for (int i = 0; i < 1000; i++)
+                      increment();
+              }
+          });
+  
+  
+          t1.start();
+          t2.start();
+  
+          try {
+              t1.join();
+              t2.join();
+          } catch (InterruptedException e) {
+              e.printStackTrace();
+          }
+  
+          System.out.println("Value of Counter is " + counter);
+      }
+  
+      private static synchronized void increment() {
+          ++counter;
+      }
+    }
+
