@@ -215,4 +215,150 @@ First example is without synchronized, this will gives results such as
           ++counter;
       }
     }
+    
+## Synchronized Block
+
+for the below example, we are using synchronized key word on method,
+it has got one disadvantage, if there two methods say m1 and m2 which 
+are synchronized as in the below example, and if two threads t1 and t2 
+are trying to access say t1 accessing m1 and t2 accessing m2. Both the threads
+cannot access the methods at the same time since the lock is intrinsic lock
+which means on the class.
+
+        public class SynchronizedBlock {
+        
+            private static int count1 = 0;
+            private static int count2 = 0;
+        
+            public static synchronized void add() {
+                ++count1;
+            }
+        
+            public static synchronized void addAgain() {
+                ++count2;
+            }
+        
+            public static void main(final String[] args) {
+                Thread t1 = new Thread(new Runnable() {
+                    public void run() {
+                        for (int i = 0; i < 1000; i++) {
+                            add();
+                            addAgain();
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+        
+                Thread t2 = new Thread(new Runnable() {
+                    public void run() {
+                        for (int i = 0; i < 1000; i++) {
+                            add();
+                            addAgain();
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+        
+                long startTime = System.currentTimeMillis();
+                t1.start();
+                t2.start();
+        
+                try {
+                    t1.join();
+                    t2.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        
+                long endTime = System.currentTimeMillis();
+                System.out.println("time taken for " + (endTime - startTime) + " count 1  is " + count1 + " count 2 is " + count2);
+        
+            }
+        }
+
+ o/p will be which can vary
+ time taken for 1376 count 1  is 2000 count 2 is 2000
+ 
+ 
+ We will make few changes in the above problem where we will not use intrinsic
+ lock but will use lock on object, so that both the methods can be accessed
+ by two different threads at the same time.
+ 
+         public class SynchronizedBlock {
+         
+             private static int count1 = 0;
+             private static int count2 = 0;
+         
+             private static Object lock1 = new Object();
+             private static Object lock2 = new Object();
+         
+             public static void add() {
+                 synchronized (lock1) {
+                     ++count1;
+                 }
+             }
+         
+             public static void addAgain() {
+                 synchronized (lock2) {
+                     ++count2;
+                 }
+             }
+         
+             public static void main(final String[] args) {
+                 Thread t1 = new Thread(new Runnable() {
+                     public void run() {
+                         for (int i = 0; i < 1000; i++) {
+                             add();
+                             addAgain();
+                             try {
+                                 Thread.sleep(1);
+                             } catch (InterruptedException e) {
+                                 e.printStackTrace();
+                             }
+                         }
+                     }
+                 });
+         
+                 Thread t2 = new Thread(new Runnable() {
+                     public void run() {
+                         for (int i = 0; i < 1000; i++) {
+                             addAgain();
+                             add();
+                             try {
+                                 Thread.sleep(1);
+                             } catch (InterruptedException e) {
+                                 e.printStackTrace();
+                             }
+                         }
+                     }
+                 });
+         
+                 long startTime = System.currentTimeMillis();
+                 t1.start();
+                 t2.start();
+         
+                 try {
+                     t1.join();
+                     t2.join();
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
+         
+                 long endTime = System.currentTimeMillis();
+                 System.out.println("time taken is " + (endTime - startTime) + " count 1  is " + count1 + " count 2 is " + count2);
+         
+             }
+         }
+
+o/p will be 
+time taken is 1317 count 1  is 2000 count 2 is 2000
+ 
 
