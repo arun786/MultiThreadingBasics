@@ -1,6 +1,15 @@
 # Re-Entrant Lock
 Re entrant lock is enhanced version of Synchronized. It is mutually exclusive lock
-example of Reentrant lock is as below
+example of Reentrant lock is as below.
+
+Features of Reentrant Lock, which were not present in synchronized
+
+1. fairness, it means providing lock to the longest waiting thread.
+   (Lock lock = new Reentrantlock(true))
+   true means the longest waiting thread will acquire the thread.
+   else if it is false, it will not guarantee access order. 
+2. It provides interruptibly, it doesnot block infinitely.
+ 
 
     import java.util.concurrent.locks.Lock;
     import java.util.concurrent.locks.ReentrantLock;
