@@ -15,8 +15,8 @@ public class ExecutorExplained {
 
         for (int ii = 0; ii < 10; ii++) {
             /**
-             * executorService.execute can take Runnable or Callable as parameter
-             * but submit takes only runnable as parameter
+             * executorService.submit can take Runnable or Callable as parameter
+             * but execute takes only runnable as parameter
              */
             executorService.execute(() -> {
                 for (int i = 0; i < 10; i++) {
@@ -29,6 +29,9 @@ public class ExecutorExplained {
                 }
             });
         }
+
+        executorService.shutdown();
+
     }
 }
 
