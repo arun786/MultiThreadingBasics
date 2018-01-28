@@ -48,10 +48,18 @@ These are factory class which creates an Executor Service.
         
     2. newCachedThreadPool.
     
-    /*      /*
+             /*
              * There is no limit to number of threads in the pool. If the number of request
              * is 10, 10 threads will start and say if all the threads are busy and 2 more requests
              * are submitted, new threads will be created from the pool. So there is no wait.
              */
             ExecutorService executorService = Executors.newCachedThreadPool();
-        
+      
+    3. newSingleThreadExecutor
+    
+                /**
+                 * this is a special case where Thread Pool has got only 1 thread.
+                 * Here the tasks executes sequentially so if there is a shared resource
+                 * we don't need to use synchronization.
+                 */
+                ExecutorService executorService = Executors.newSingleThreadExecutor();  
