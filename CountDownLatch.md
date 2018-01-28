@@ -2,6 +2,11 @@
 
 It is kind of synchronizer which allows one or more threads to wait 
 till few threads complete their processing.
+
+there are 2 main methods
+
+1. await() - The main thread waits till all the threads complete.
+2. countdown() - to inform countdown latch to decrease the count.
     
     package ConceptOfCountDownLatch;
     
