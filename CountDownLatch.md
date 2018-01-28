@@ -7,6 +7,9 @@ there are 2 main methods
 
 1. await() - The main thread waits till all the threads complete.
 2. countdown() - to inform countdown latch to decrease the count.
+
+once CountDownLatch is initialized, we cannot change the value. It can only be decremented using 
+countdown(). we cannot reuse countdown latch.
     
     package ConceptOfCountDownLatch;
     
