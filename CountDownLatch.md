@@ -1,5 +1,7 @@
 # CountDownLatch
 
+It is kind of synchronizer which allows one or more threads to wait 
+till few threads complete their processing.
     
     package ConceptOfCountDownLatch;
     
