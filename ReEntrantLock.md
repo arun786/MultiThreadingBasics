@@ -11,23 +11,23 @@ Features of Reentrant Lock, which were not present in synchronized
 2. It provides interruptibly, it doesnot block infinitely.
  
 
-    import java.util.concurrent.locks.Lock;
-    import java.util.concurrent.locks.ReentrantLock;
+        import java.util.concurrent.locks.Lock;
+        import java.util.concurrent.locks.ReentrantLock;
     
-    public class ReEntrantsLockExplained {
-        private static int counter;
-        private static Lock lock = new ReentrantLock();
-    
-        private static int increment() {
-            lock.lock();
-            try {
-                for (int i = 0; i < 1000; i++) {
-                    counter++;
+        public class ReEntrantsLockExplained {
+            private static int counter;
+            private static Lock lock = new ReentrantLock();
+        
+            private static int increment() {
+                lock.lock();
+                try {
+                    for (int i = 0; i < 1000; i++) {
+                        counter++;
+                    }
+                } finally {
+                    lock.unlock();
                 }
-            } finally {
-                lock.unlock();
-            }
-            return counter;
+                return counter;
         }
     
         public static void main(String[] args) throws InterruptedException {
