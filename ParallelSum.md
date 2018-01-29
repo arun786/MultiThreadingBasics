@@ -105,3 +105,10 @@
             return partialSum;
         }
     }
+
+
+    output will be as below
+    
+    Result 655007031 time 40 ms
+    Number of Processors .... 4
+    Result 655007031 time 30 ms
