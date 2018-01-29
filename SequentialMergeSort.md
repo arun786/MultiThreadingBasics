@@ -67,7 +67,7 @@ extra memory.
                 i++;
             }
     
-            while (j <= middleIndex) {
+            while (j <= highIndex) {
                 numbers[k] = tempArrays[j];
                 k++;
                 j++;

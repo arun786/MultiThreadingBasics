@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class SequentialMergeSort {
 
-    private static int[] numbers = {3, 1, 5, 7};
+    private static int[] numbers = {3, 1, 5, 7, 1};
     private static int[] tempArrays;
 
 
@@ -60,7 +60,7 @@ public class SequentialMergeSort {
             i++;
         }
 
-        while (j <= middleIndex) {
+        while (j <= highIndex) {
             numbers[k] = tempArrays[j];
             k++;
             j++;
