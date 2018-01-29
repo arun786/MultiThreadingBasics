@@ -109,6 +109,9 @@
 
     output will be as below
     
+    For Sequential Sum - it will take more time if the numbers are more in an array.
+    But if it is less, than the time taken compared to parallel processing will be less.
+    
     Result 655007031 time 40 ms
     Number of Processors .... 4
     Result 655007031 time 30 ms
