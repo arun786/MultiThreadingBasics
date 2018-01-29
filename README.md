@@ -15,3 +15,5 @@
 [Wait and Notify](https://github.com/arun786/MultiThreadingBasics/blob/master/WaitAndNotify.md)
 
 [Blocking Queue](https://github.com/arun786/MultiThreadingBasics/blob/master/BlockingQueue.md)
+
+[Sequential Merge Sort](https://github.com/arun786/MultiThreadingBasics/blob/master/SequentialMergeSort.md)
