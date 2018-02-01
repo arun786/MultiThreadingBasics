@@ -6,6 +6,10 @@ public class WaitAndNotify {
 
     public static void main(String[] args) throws InterruptedException {
 
+        /**
+         * if the objects are different notify cannot wake up the thread from waiting state.
+         * wait and notify should be called on the same object
+         */
         Processor processor = new Processor();
         Runnable r1 = () -> {
             try {
